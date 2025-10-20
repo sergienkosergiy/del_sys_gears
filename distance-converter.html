@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Converter</title>
+    <link rel="stylesheet" href="src/styles/distance-converter.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1 class="title">Distance Converter</h1>
+            <p class="subtitle">Advanced unit conversion with extensible configuration</p>
+        </header>
+
+        <main class="main-content">
+            <div class="converter-layout">
+                <div class="input-section">
+                    <div class="section-header">
+                        <h2>Input Distance</h2>
+                        <div class="section-controls">
+                            <button class="control-btn" id="clearInput">Clear</button>
+                            <button class="control-btn" id="swapUnits">⇄ Swap</button>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="value-input">
+                            <label for="inputValue" class="input-label">Value</label>
+                            <input type="number" id="inputValue" class="value-field" placeholder="Enter distance" step="any">
+                            <div class="input-validation" id="inputValidation"></div>
+                        </div>
+                        
+                        <div class="unit-selector">
+                            <label for="inputUnit" class="input-label">From Unit</label>
+                            <select id="inputUnit" class="unit-select">
+                                <option value="">Select unit...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conversion-arrow">
+                    <div class="arrow-icon">→</div>
+                    <button class="convert-btn" id="convertBtn">Convert</button>
+                </div>
+
+                <div class="output-section">
+                    <div class="section-header">
+                        <h2>Output Distance</h2>
+                        <div class="section-controls">
+                            <button class="control-btn" id="copyResult">Copy</button>
+                            <button class="control-btn" id="exportJson">Export JSON</button>
+                        </div>
+                    </div>
+                    
+                    <div class="output-group">
+                        <div class="unit-selector">
+                            <label for="outputUnit" class="input-label">To Unit</label>
+                            <select id="outputUnit" class="unit-select">
+                                <option value="">Select unit...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="result-display">
+                            <div class="result-value" id="resultValue">0.00</div>
+                            <div class="result-unit" id="resultUnit">unit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conversion-history">
+                <div class="section-header">
+                    <h2>Conversion History</h2>
+                    <div class="section-controls">
+                        <button class="control-btn" id="clearHistory">Clear History</button>
+                        <button class="control-btn" id="exportHistory">Export</button>
+                    </div>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="empty-history">
+                        <div class="empty-icon">📏</div>
+                        <h3>No Conversions Yet</h3>
+                        <p>Start converting distances to see your history</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="units-reference">
+                <div class="section-header">
+                    <h2>Supported Units</h2>
+                    <button class="control-btn" id="toggleReference">Show/Hide</button>
+                </div>
+                <div class="reference-content" id="referenceContent">
+                    <div class="units-grid" id="unitsGrid">
+                        <!-- Units will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="batch-converter">
+                <div class="section-header">
+                    <h2>Batch Converter</h2>
+                    <button class="control-btn primary" id="processBatch">Process Batch</button>
+                </div>
+                <div class="batch-content">
+                    <div class="batch-input">
+                        <label for="batchInput" class="input-label">JSON Input (Array of conversions)</label>
+                        <textarea id="batchInput" class="batch-textarea" placeholder='[{"distance": {"unit": "m", "value": 1}, "convertTo": "ft"}]'></textarea>
+                        <div class="batch-validation" id="batchValidation"></div>
+                    </div>
+                    <div class="batch-output">
+                        <label class="input-label">Batch Results</label>
+                        <div class="batch-results" id="batchResults">
+                            <div class="empty-batch">
+                                <div class="empty-icon">⚡</div>
+                                <h4>No Batch Results</h4>
+                                <p>Enter JSON array and click "Process Batch"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="test-runner" id="testRunner">
+        <div class="test-header">
+            <h3>Unit Tests</h3>
+            <button class="control-btn" id="runTests">Run Tests</button>
+        </div>
+        <div class="test-results" id="testResults"></div>
+    </div>
+
+    <script src="src/js/distance-converter/core/types.js"></script>
+    <script src="src/js/distance-converter/core/functional-utils.js"></script>
+    <script src="src/js/distance-converter/core/unit-registry.js"></script>
+    <script src="src/js/distance-converter/core/converter-engine.js"></script>
+    <script src="src/js/distance-converter/tests/unit-tests.js"></script>
+    <script src="src/js/distance-converter/ui/converter-ui.js"></script>
+</body>
+</html>
